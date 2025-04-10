@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Animation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .success-box {
+            background-color: #4CAF50;
+            padding: 2rem 4rem;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            transform: scale(0);
+            animation: boxScale 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .checkmark {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: white;
+            margin: 0 auto 1rem;
+            position: relative;
+            opacity: 0;
+            animation: checkAppear 0.5s ease-out 0.3s forwards;
+        }
+
+        .checkmark::after {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 30px;
+            width: 20px;
+            height: 10px;
+            border: solid #4CAF50;
+            border-width: 0 0 4px 4px;
+            transform: rotate(-45deg);
+        }
+
+        h1 {
+            margin: 0 0 1rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: textAppear 0.5s ease-out 0.6s forwards;
+        }
+
+        p {
+            margin: 0 0 1.5rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: textAppear 0.5s ease-out 0.8s forwards;
+        }
+
+        .home-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: white;
+            color: #4CAF50;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: textAppear 0.5s ease-out 1s forwards;
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @keyframes boxScale {
+            to {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes checkAppear {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes textAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-box">
+        <div class="checkmark"></div>
+        <h1>Success!</h1>
+        <p>Your message has been sent successfully. Thanks!</p>
+        <a href="/index.html" class="home-button">Go Home</a>
+    </div>
+
+    <script>
+        // Optional: Add interactive animation on button hover
+        document.querySelector('.home-button').addEventListener('mouseover', () => {
+            document.querySelector('.success-box').style.transform = 'scale(1.02)';
+        });
+
+        document.querySelector('.home-button').addEventListener('mouseout', () => {
+            document.querySelector('.success-box').style.transform = 'scale(1)';
+        });
+    </script>
+</body>
+</html>
